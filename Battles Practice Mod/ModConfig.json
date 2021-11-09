@@ -1,0 +1,16 @@
+{
+  "ModId": "Battles_Practice_Mod",
+  "ModName": "Battles_Practice_Mod",
+  "ModAuthor": "",
+  "ModVersion": "1.0.0",
+  "ModDescription": "",
+  "ModDll": "Battles_Practice_Mod.dll",
+  "ModIcon": "Preview.png",
+  "ModR2RManagedDll32": "x86/Battles_Practice_Mod.dll",
+  "ModR2RManagedDll64": "x64/Battles_Practice_Mod.dll",
+  "ModNativeDll32": "",
+  "ModNativeDll64": "",
+  "ModDependencies": [ "reloaded.sharedlib.hooks", "BattlesSDK" ],
+  "OptionalDependencies": null,
+  "SupportedAppId": []
+}

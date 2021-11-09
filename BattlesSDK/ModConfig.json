@@ -1,0 +1,16 @@
+{
+  "ModId": "BattlesSDK",
+  "ModName": "Battles SDK",
+  "ModAuthor": "Gurrenm3",
+  "ModVersion": "0.0.1",
+  "ModDescription": "A Modding API for Bloons TD Battles 2",
+  "ModDll": "BattlesSDK.dll",
+  "ModIcon": "Icon.png",
+  "ModR2RManagedDll32": "x86/BattlesSDK.dll",
+  "ModR2RManagedDll64": "x64/BattlesSDK.dll",
+  "ModNativeDll32": "",
+  "ModNativeDll64": "",
+  "ModDependencies": [ "reloaded.sharedlib.hooks" ],
+  "OptionalDependencies": null,
+  "SupportedAppId": []
+}
