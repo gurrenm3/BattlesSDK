@@ -1,6 +1,7 @@
 ﻿using BattlesSDK.Interfaces;
 using Reloaded.Mod.Interfaces;
 using Reloaded.Mod.Interfaces.Internal;
+using System.Diagnostics;
 
 namespace BattlesSDK.Api
 {
@@ -9,6 +10,11 @@ namespace BattlesSDK.Api
     /// </summary>
     public class BattlesMod : IBattlesMod
     {
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        public Process BattlesProcess { get; set; }
+
         /// <summary>
         /// <inheritdoc/>
         /// </summary>
@@ -27,17 +33,21 @@ namespace BattlesSDK.Api
         /// <summary>
         /// <inheritdoc/>
         /// </summary>
-        public virtual void Start()
-        {
-            
-        }
+        public virtual void Start() { }
 
         /// <summary>
         /// <inheritdoc/>
         /// </summary>
-        public virtual void Update()
-        {
-            
-        }
+        public virtual void Update() { }
+
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        public virtual void OnModUnregistered() { }
+
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        public virtual void OnGameExit() { }
     }
 }

@@ -29,12 +29,15 @@ namespace BattlesSDK
             {
                 isKeyDown = true;
                 wasKeyDown = true;
+                Input.OnKeyDown.Invoke(key);
             }
         }
 
         private void SetKeyHeld()
         {
             isKeyHeld = key.GetKey();
+            if (isKeyHeld)
+                Input.OnKeyHeld.Invoke(key);
         }
 
         private void SetKeyUp()
@@ -44,6 +47,7 @@ namespace BattlesSDK
             {
                 isKeyUp = true;
                 wasKeyDown = false;
+                Input.OnKeyUp.Invoke(key);
             }
         }
     }

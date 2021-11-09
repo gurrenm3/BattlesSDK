@@ -27,64 +27,82 @@ namespace BattlesSDK.Api
             ModInfo = modInfo;
         }
 
-        private void WriteModName(Color color)
+        private void WriteModName(Color color) => BaseLogger.Write($"[{ModInfo.ModName}] ", color);
+
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        public void Write(string message, LogType logType = LogType.Normal)
         {
-            BaseLogger.Write($"[{ModInfo.ModName}] ", color);
+            WriteModName(modNameColor);
+            var logColor = GetLogColor(logType);
+            BaseLogger.Write(message, logColor);
         }
 
         /// <summary>
         /// <inheritdoc/>
         /// </summary>
-        public void Write(string message)
+        public void WriteAsync(string message, LogType logType = LogType.Normal)
         {
             WriteModName(modNameColor);
-            BaseLogger.Write(message);
+            var logColor = GetLogColor(logType);
+            BaseLogger.WriteAsync(message, logColor);
         }
 
         /// <summary>
         /// <inheritdoc/>
         /// </summary>
-        public void WriteAsync(string message)
+        public void WriteLine(bool message, LogType logType = LogType.Normal) => WriteLine(message.ToString(), logType);
+
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        public void WriteLine(int message, LogType logType = LogType.Normal) => WriteLine(message.ToString(), logType);
+
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        public void WriteLine(double message, LogType logType = LogType.Normal) => WriteLine(message.ToString(), logType);
+
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        public void WriteLine(string message, LogType logType = LogType.Normal)
         {
             WriteModName(modNameColor);
-            BaseLogger.WriteAsync(message);
+            var logColor = GetLogColor(logType);
+            BaseLogger.WriteLine(message, logColor);
         }
 
         /// <summary>
         /// <inheritdoc/>
         /// </summary>
-        public void WriteLine(bool message) => WriteLine(message.ToString());
-
-        /// <summary>
-        /// <inheritdoc/>
-        /// </summary>
-        public void WriteLine(int message) => WriteLine(message.ToString());
-
-        /// <summary>
-        /// <inheritdoc/>
-        /// </summary>
-        public void WriteLine(double message) => WriteLine(message.ToString());
-
-        /// <summary>
-        /// <inheritdoc/>
-        /// </summary>
-        public void WriteLine(string message)
+        public void WriteLineAsync(string message, LogType logType = LogType.Normal)
         {
             WriteModName(modNameColor);
-            BaseLogger.WriteLine(message);
+            var logColor = GetLogColor(logType);
+            BaseLogger.WriteLineAsync(message, logColor);
         }
 
-        /// <summary>
-        /// <inheritdoc/>
-        /// </summary>
-        public void WriteLineAsync(string message)
+        private Color GetLogColor(LogType logType)
         {
-            WriteModName(modNameColor);
-            BaseLogger.WriteLineAsync(message);
+            Color logColor = BaseLogger.TextColor;
+            switch (logType)
+            {
+                case LogType.Warning:
+                    logColor = Color.Yellow;
+                    break;
+                case LogType.Error:
+                    logColor = Color.Red;
+                    break;
+                default:
+                    break;
+            }
+            return logColor;
         }
 
         internal static void SetAPILogger(IBattlesLogger logger) => apiLogger = logger;
-        internal static void APIWrite(string message) => apiLogger.Write(message);
-        internal static void APIWriteLine(string message) => apiLogger.WriteLine(message);
+        internal static void APIWrite(string message, LogType logType = LogType.Normal) => apiLogger.Write(message, logType);
+        internal static void APIWriteLine(string message, LogType logType = LogType.Normal) => apiLogger.WriteLine(message, logType);
     }
 }

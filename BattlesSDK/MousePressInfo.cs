@@ -29,12 +29,15 @@ namespace BattlesSDK
             {
                 isButtonDown = true;
                 wasButtonDown = true;
+                Input.OnMouseDown.Invoke(button);
             }
         }
 
         private void SetButtonHeld()
         {
             isButtonHeld = button.GetButton();
+            if (isButtonHeld)
+                Input.OnMouseHeld.Invoke(button);
         }
 
         private void SetButtonUp()
@@ -44,6 +47,7 @@ namespace BattlesSDK
             {
                 isButtonUp = true;
                 wasButtonDown = false;
+                Input.OnMouseUp.Invoke(button);
             }
         }
     }

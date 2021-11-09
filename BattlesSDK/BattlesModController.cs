@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using BattlesSDK.Api;
 using BattlesSDK.Interfaces;
 using Reloaded.Mod.Interfaces;
@@ -8,24 +10,39 @@ namespace BattlesSDK
 {
     class BattlesModController : IBattlesController
     {
+        public static BattlesModController instance;
         public List<IBattlesMod> BattlesMods { get; set; } = new List<IBattlesMod>();
+        public Process BattlesProcess { get; set; }
+        public IModLoader ModLoader { get; set; }
+        public ILogger Logger { get; set; }
 
-        private IModLoader modLoader;
-        private ILogger logger;
 
         public BattlesModController(IModLoader modLoader, ILogger logger)
         {
-            this.modLoader = modLoader;
-            this.logger = logger;
+            this.ModLoader = modLoader;
+            this.Logger = logger;
+            instance = this;
         }
 
         public void RegisterBattlesMod(IBattlesMod battlesMod, IModConfigV1 modInfo)
         {
-            battlesMod.ModLoader = modLoader;
+            battlesMod.ModLoader = ModLoader;
             battlesMod.ModInfo = modInfo;
-            battlesMod.Logger = new BattlesLogger(logger, modInfo);
+            battlesMod.Logger = new BattlesLogger(Logger, modInfo);
+            battlesMod.BattlesProcess = BattlesProcess;
             BattlesMods.Add(battlesMod);
             battlesMod.Start();
+        }
+
+        public void UnregisterBattlesMod(IBattlesMod battlesMod)
+        {
+            BattlesMods.Remove(battlesMod);
+            battlesMod.OnModUnregistered();
+        }
+
+        public void RunBattlesEvent(Action<IBattlesMod> patch)
+        {
+            BattlesMods.ForEach(mod => patch.Invoke(mod));
         }
     }
 }

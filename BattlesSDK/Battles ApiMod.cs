@@ -1,5 +1,4 @@
 ﻿using BattlesSDK.Api;
-using BattlesSDK.Interfaces;
 
 namespace BattlesSDK
 {

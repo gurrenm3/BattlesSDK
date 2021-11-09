@@ -4,6 +4,7 @@ using Reloaded.Hooks.ReloadedII.Interfaces;
 using Reloaded.Mod.Interfaces;
 using Reloaded.Mod.Interfaces.Internal;
 using System;
+using System.Diagnostics;
 
 namespace BattlesSDK
 {
@@ -32,7 +33,7 @@ namespace BattlesSDK
         private IReloadedHooks _hooks;
 
         /// <summary>
-        /// Instance of the NMSModController
+        /// Instance of the BattlesModController
         /// </summary>
         BattlesModController _battlesModController;
 
@@ -45,6 +46,11 @@ namespace BattlesSDK
         /// Mod Info about the API
         /// </summary>
         IModConfigV1 _apiConfig;
+
+        /// <summary>
+        /// The running Process for Battles
+        /// </summary>
+        Process _battlesProcess;
 
         /// <summary>
         /// Entry point for your mod.
@@ -65,8 +71,15 @@ namespace BattlesSDK
             // Set API Logger
             BattlesLogger.SetAPILogger(new BattlesLogger(_logger, _apiConfig));
 
+            // Battles Process
+            _battlesProcess = GetBattlesProcess();
+
             // Init ModController
-            _battlesModController = new BattlesModController(_modLoader, _logger);
+            _battlesModController = new BattlesModController(_modLoader, _logger)
+            {
+                BattlesProcess = _battlesProcess
+            };
+            
             RegisterAPI();
             _modLoader.AddOrReplaceController<IBattlesController>(this, _battlesModController);
 
@@ -78,6 +91,9 @@ namespace BattlesSDK
             UpdateLoop update = new UpdateLoop(_battlesModController.BattlesMods);
             update.StartUpdateLoopAsync();
             BattlesLogger.APIWriteLine("Update Loop started!");
+
+            // OnGameExit
+            RegisterOnGameExit();
         }
 
         private void RegisterAPI()
@@ -85,6 +101,27 @@ namespace BattlesSDK
             _apiMod = new Battles_ApiMod();
             _battlesModController.RegisterBattlesMod(_apiMod, _apiConfig);
             _apiMod.Logger = BattlesLogger.apiLogger;
+        }
+
+        private void RegisterOnGameExit()
+        {
+            if (_battlesProcess == null)
+            {
+                BattlesLogger.APIWriteLine("Unable to run OnGameExit because ", LogType.Error);
+                return;
+            }
+
+            _battlesProcess.Exited += BattlesProcess_Exited;
+        }
+
+        private Process GetBattlesProcess()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void BattlesProcess_Exited(object sender, EventArgs e)
+        {
+            _battlesModController.RunBattlesEvent(mod => mod.OnGameExit());
         }
 
         #region Reloaded2 Methods

@@ -12,7 +12,38 @@ namespace BattlesSDK.Api
         private static List<MousePressInfo> allMouseInfo = new List<MousePressInfo>();
 
         /// <summary>
-        /// Creates a default Input class
+        /// A BattlesEvent that is invoked whenever a keyboard key is pressed down
+        /// </summary>
+        public static BattlesEvent<KeyCode> OnKeyDown { get; private set; } = new BattlesEvent<KeyCode>();
+
+        /// <summary>
+        /// A BattlesEvent that is invoked whenever a keyboard key is pressed held down
+        /// </summary>
+        public static BattlesEvent<KeyCode> OnKeyHeld { get; private set; } = new BattlesEvent<KeyCode>();
+
+        /// <summary>
+        /// A BattlesEvent that is invoked whenever a keyboard key is released
+        /// </summary>
+        public static BattlesEvent<KeyCode> OnKeyUp { get; private set; } = new BattlesEvent<KeyCode>();
+
+        /// <summary>
+        /// A BattlesEvent that is invoked whenever a mouse button is pressed down
+        /// </summary>
+        public static BattlesEvent<Mouse> OnMouseDown { get; private set; } = new BattlesEvent<Mouse>();
+
+        /// <summary>
+        /// A BattlesEvent that is invoked whenever a mouse button is held down
+        /// </summary>
+        public static BattlesEvent<Mouse> OnMouseHeld { get; private set; } = new BattlesEvent<Mouse>();
+
+        /// <summary>
+        /// A BattlesEvent that is invoked whenever a mouse button is released
+        /// </summary>
+        public static BattlesEvent<Mouse> OnMouseUp { get; private set; } = new BattlesEvent<Mouse>();
+
+
+        /// <summary>
+        /// Default constructor for Input class
         /// </summary>
         public Input()
         {
@@ -25,6 +56,9 @@ namespace BattlesSDK.Api
                 allMouseInfo.Add(new MousePressInfo(button));
         }
 
+        /// <summary>
+        /// Updates the KeyPress info for keyboard buttons and mouse buttons
+        /// </summary>
         internal void Update()
         {
             allKeyInfo.ForEach(key => key.UpdateKeyInfo());
