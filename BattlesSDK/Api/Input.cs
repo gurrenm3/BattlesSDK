@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace BattlesSDK.Api
 {
@@ -130,6 +131,16 @@ namespace BattlesSDK.Api
         {
             MousePressInfo pressInfo = GetButtonInfo(mouseButton);
             return (pressInfo != null) ? pressInfo.isButtonUp : false;
+        }
+
+        /// <summary>
+        /// Get the position of the cursor in screen coordinates
+        /// </summary>
+        /// <returns></returns>
+        public static Vector2 GetMousePos()
+        {
+            User32.GetCursorPos(out Point position);
+            return new Vector2(position);
         }
 
 

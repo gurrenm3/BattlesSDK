@@ -104,5 +104,6 @@ namespace BattlesSDK.Api
         internal static void SetAPILogger(IBattlesLogger logger) => apiLogger = logger;
         internal static void APIWrite(string message, LogType logType = LogType.Normal) => apiLogger.Write(message, logType);
         internal static void APIWriteLine(string message, LogType logType = LogType.Normal) => apiLogger.WriteLine(message, logType);
+        internal static void APIWriteLine(bool message, LogType logType = LogType.Normal) => apiLogger.WriteLine(message.ToString(), logType);
     }
 }

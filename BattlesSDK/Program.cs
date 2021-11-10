@@ -71,6 +71,9 @@ namespace BattlesSDK
             // Set API Logger
             BattlesLogger.SetAPILogger(new BattlesLogger(_logger, _apiConfig));
 
+            // Setup IMGUI
+            InitImgui();
+
             // Battles Process
             _battlesProcess = GetBattlesProcess();
 
@@ -86,6 +89,7 @@ namespace BattlesSDK
             // Mod Updater
             //   TODO
 
+            
             // Update Loop
             BattlesLogger.APIWriteLine("Starting Update Loop...");
             UpdateLoop update = new UpdateLoop(_battlesModController.BattlesMods);
@@ -96,6 +100,12 @@ namespace BattlesSDK
             RegisterOnGameExit();
         }
 
+        private void InitImgui()
+        {
+            
+        }
+
+       
         private void RegisterAPI()
         {
             _apiMod = new Battles_ApiMod();
@@ -107,7 +117,7 @@ namespace BattlesSDK
         {
             if (_battlesProcess == null)
             {
-                BattlesLogger.APIWriteLine("Unable to run OnGameExit because ", LogType.Error);
+                BattlesLogger.APIWriteLine($"Unable to register OnGameExit for mods because {nameof(_battlesProcess)} is null", LogType.Error);
                 return;
             }
 
@@ -116,7 +126,14 @@ namespace BattlesSDK
 
         private Process GetBattlesProcess()
         {
-            throw new NotImplementedException();
+            Process gameProc = Process.GetCurrentProcess();
+            if (gameProc == null)
+            {
+                BattlesLogger.APIWriteLine("Failed to get the process for Battles 2. Some of the API features won't work.", LogType.Error);
+                return null;
+            }
+
+            return gameProc;
         }
 
         private void BattlesProcess_Exited(object sender, EventArgs e)
