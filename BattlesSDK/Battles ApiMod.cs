@@ -1,5 +1,4 @@
 ﻿using BattlesSDK.Api;
-using DearImguiSharp;
 
 namespace BattlesSDK
 {
