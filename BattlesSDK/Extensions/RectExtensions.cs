@@ -1,6 +1,6 @@
 ﻿using GameOverlay.Windows;
 
-namespace BattlesSDK.Api
+namespace ModSDK.Api
 {
     /// <summary>
     /// Extension methods for <see cref="Rect"/>

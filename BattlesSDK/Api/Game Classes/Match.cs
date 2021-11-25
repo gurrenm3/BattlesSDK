@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BattlesSDK.Api
+namespace ModSDK.Api
 {
     /// <summary>
     /// 
@@ -44,32 +44,32 @@ namespace BattlesSDK.Api
         /// <summary>
         /// Called when you first join a game, but before round 1 starts
         /// </summary>
-        public BattlesEvent GameStarted { get; private set; } = new BattlesEvent();
+        public ModEvent GameStarted { get; private set; } = new ModEvent();
 
         /// <summary>
         /// Called whenever a new round starts
         /// </summary>
-        public BattlesEvent<int> RoundStarted { get; private set; } = new BattlesEvent<int>();
+        public ModEvent<int> RoundStarted { get; private set; } = new ModEvent<int>();
 
         /// <summary>
         /// Called whenever a round ends
         /// </summary>
-        public BattlesEvent<int> RoundEnded { get; private set; } = new BattlesEvent<int>();
+        public ModEvent<int> RoundEnded { get; private set; } = new ModEvent<int>();
 
         /// <summary>
         /// Called when you win a game
         /// </summary>
-        public BattlesEvent Victory { get; private set; } = new BattlesEvent();
+        public ModEvent Victory { get; private set; } = new ModEvent();
 
         /// <summary>
         /// Called when you lose a game
         /// </summary>
-        public BattlesEvent Defeated { get; private set; } = new BattlesEvent();
+        public ModEvent Defeated { get; private set; } = new ModEvent();
 
         /// <summary>
         /// Called whenever you finish a game, whether or not you win
         /// </summary>
-        public BattlesEvent GameFinished { get; private set; } = new BattlesEvent();
+        public ModEvent GameFinished { get; private set; } = new ModEvent();
 
         #endregion
     }

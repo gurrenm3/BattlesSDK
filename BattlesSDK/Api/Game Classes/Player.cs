@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BattlesSDK.Api
+namespace ModSDK.Api
 {
     /// <summary>
     /// Base class for all Players
@@ -10,7 +10,7 @@ namespace BattlesSDK.Api
         /// <summary>
         /// Called whenever the player's health is changed
         /// </summary>
-        public BattlesEvent<int> HealthChanged { get; private set; } = new BattlesEvent<int>();
+        public ModEvent<int> HealthChanged { get; private set; } = new ModEvent<int>();
 
         /// <summary>
         /// The towers that the player is using

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BattlesSDK.Api
+namespace ModSDK.Api
 {
     /// <summary>
     /// Used to manage data about the Enemy Player that you're battling against

@@ -1,13 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>BattlesSDK</RootNamespace>
+    <RootNamespace>ModSDK</RootNamespace>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <AssemblyName>BattlesSDK</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -33,11 +34,6 @@
     <PackageReference Include="GameOverlay.Net" Version="4.3.1" />
     <PackageReference Include="Reloaded.Memory" Version="4.1.3" />
     <PackageReference Include="Reloaded.Memory.Buffers" Version="1.4.1" />
-    <PackageReference Include="Reloaded.Messaging" Version="1.3.0" />
-    <PackageReference Include="Reloaded.Messaging.Interfaces" Version="1.0.0" />
-    <PackageReference Include="Reloaded.Messaging.Serializer.MessagePack" Version="1.1.0" />
-    <PackageReference Include="Reloaded.Messaging.Serializer.ReloadedMemory" Version="1.1.0" />
-    <PackageReference Include="Reloaded.Messaging.Serializer.SystemTextJson" Version="1.0.1" />
     <PackageReference Include="Reloaded.Mod.Interfaces" Version="1.10.1" />
     <PackageReference Include="Reloaded.SharedLib.Hooks" Version="1.9.0" />
     <PackageReference Include="SharpDX" Version="4.2.0" />
@@ -46,15 +42,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BattlesSDK.Interfaces\BattlesSDK.Interfaces.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="Resources\Icon.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Api\Messaging\" />
+    <ProjectReference Include="..\..\..\..\Repos\ReloadedModSDK\ModSDK.Interfaces\ModSDK.Interfaces.csproj" />
   </ItemGroup>
+
+  <Import Project="..\..\..\..\Repos\ReloadedModSDK\ModSDK.Shared\ModSDK.Shared.projitems" Label="Shared" />
 
 </Project>

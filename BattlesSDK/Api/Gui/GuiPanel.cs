@@ -2,7 +2,7 @@
 using GameOverlay.Windows;
 using System;
 
-namespace BattlesSDK.Api.Gui
+namespace ModSDK.Api.Gui
 {
     /// <summary>
     /// The parent class for all Gui used in the API
@@ -85,7 +85,8 @@ namespace BattlesSDK.Api.Gui
                     break;
             }
 
-            WindowGraphics.DrawRectangle(popupBackground, panelRect, 50);
+            throw new NotImplementedException();
+            //WindowGraphics.DrawRectangle(popupBackground, panelRect, 50);
             WindowGraphics.EndScene();
         }
 

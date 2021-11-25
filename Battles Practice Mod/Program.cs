@@ -1,12 +1,12 @@
-﻿using BattlesSDK.Interfaces;
-using Battles_Practice_Mod.Configuration;
-using Battles_Practice_Mod.Configuration.Implementation;
+﻿using ModSDK.Interfaces;
+using TestMod.Configuration;
+using TestMod.Configuration.Implementation;
 using Reloaded.Hooks.ReloadedII.Interfaces;
 using Reloaded.Mod.Interfaces;
 using Reloaded.Mod.Interfaces.Internal;
 using System;
 
-namespace Battles_Practice_Mod
+namespace TestMod
 {
     public class Program : IMod
     {
@@ -61,12 +61,12 @@ namespace Battles_Practice_Mod
 
         private void TryRegisteringMod(IModConfigV1 config)
         {
-            var controllerRef = _modLoader.GetController<IBattlesController>();
+            var controllerRef = _modLoader.GetController<IModController>();
             if (controllerRef == null || !controllerRef.TryGetTarget(out var battlesModController))
                 return;
 
             var battlesMod = new MyMod();
-            battlesModController.RegisterBattlesMod(battlesMod, config);
+            battlesModController.RegisterMod(battlesMod, config);
         }
 
         private void OnConfigurationUpdated(IConfigurable obj)

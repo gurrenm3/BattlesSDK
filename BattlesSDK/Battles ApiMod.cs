@@ -1,13 +1,9 @@
-﻿using BattlesSDK.Api;
-using LiteNetLib;
-using Reloaded.Messaging;
-using Reloaded.Messaging.Messages;
-using Reloaded.Messaging.Structs;
-using System.Net;
+﻿using ModSDK.Api;
+using System.Diagnostics;
 
-namespace BattlesSDK
+namespace ModSDK
 {
-    internal class Battles_ApiMod : BattlesMod
+    internal class Battles_ApiMod : ModBase
     {
         Input inputManager = new Input();
 
@@ -20,9 +16,23 @@ namespace BattlesSDK
             Logger.WriteLine("API finished Initializing!");
         }
 
+        double deltaTimePassed = 0;
+        Stopwatch stopwatch;
         public override void Update()
         {
             inputManager.Update();
+
+            if (stopwatch == null)
+                stopwatch = Stopwatch.StartNew();
+
+            if (stopwatch.ElapsedMilliseconds <= 1000)
+            {
+                deltaTimePassed += Time.DeltaTime;
+            }
+            else
+            {
+                Logger.WriteLine(deltaTimePassed);
+            }
         }
 
         Popup testPopup;
@@ -30,37 +40,12 @@ namespace BattlesSDK
         {
             if (key == KeyCode.Right)
             {
-                
+                Logger.WriteLine(Time.DeltaTime);
             }
 
             if (key == KeyCode.LControl)
             {
-                Logger.WriteLine("gaz");
-                if (testPopup == null)
-                {
-                    testPopup = new Popup();
-                    testPopup.Show("");
-                }
-                else
-                {
-                    testPopup.Window.IsVisible = !testPopup.Window.IsVisible; 
-                }
-
-
-                var player = Game.Instance.CurrentMatch.ActualPlayer;
-                player.HealthChanged.
-
-
-
-
-
-
-
-
-
-
-
-
+                
             }
         }
 

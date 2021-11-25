@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Threading;
 
-namespace Battles_Practice_Mod.Configuration.Implementation
+namespace TestMod.Configuration.Implementation
 {
     public class Utilities
     {

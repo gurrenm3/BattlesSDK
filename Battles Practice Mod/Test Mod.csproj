@@ -1,15 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <OutputType>WinExe</OutputType>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <ApplicationIcon />
     <StartupObject />
-    <AssemblyName>Battles_Practice_Mod</AssemblyName>
+    <AssemblyName>TestMod</AssemblyName>
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
+    <RootNamespace>TestMod</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -35,8 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BattlesSDK.Interfaces\BattlesSDK.Interfaces.csproj" />
-    <ProjectReference Include="..\BattlesSDK\BattlesSDK.csproj" />
+    <ProjectReference Include="..\BattlesSDK\ModSDK.csproj" />
   </ItemGroup>
 
 </Project>

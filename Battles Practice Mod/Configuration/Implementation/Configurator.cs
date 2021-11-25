@@ -1,7 +1,7 @@
 ﻿using Reloaded.Mod.Interfaces;
 using System.IO;
 
-namespace Battles_Practice_Mod.Configuration.Implementation
+namespace TestMod.Configuration.Implementation
 {
     public class Configurator : IConfigurator
     {

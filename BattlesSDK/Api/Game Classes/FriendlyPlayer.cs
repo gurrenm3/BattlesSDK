@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BattlesSDK.Api
+namespace ModSDK.Api
 {
     /// <summary>
     /// The active user who's playing the game. I.E the Actual Player
@@ -10,12 +10,12 @@ namespace BattlesSDK.Api
         /// <summary>
         /// Called whenever the player's cash is changed
         /// </summary>
-        public BattlesEvent<int> CashChanged { get; private set; } = new BattlesEvent<int>();
+        public ModEvent<int> CashChanged { get; private set; } = new ModEvent<int>();
 
         /// <summary>
         /// Called whenever the player's Eco is changed
         /// </summary>
-        public BattlesEvent<int> EcoChanged { get; private set; } = new BattlesEvent<int>();
+        public ModEvent<int> EcoChanged { get; private set; } = new ModEvent<int>();
 
 
         /// <summary>

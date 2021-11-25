@@ -1,7 +1,7 @@
-﻿using Battles_Practice_Mod.Configuration.Implementation;
+﻿using TestMod.Configuration.Implementation;
 using System.ComponentModel;
 
-namespace Battles_Practice_Mod.Configuration
+namespace TestMod.Configuration
 {
     public class Config : Configurable<Config>
     {

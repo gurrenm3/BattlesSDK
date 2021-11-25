@@ -1,12 +1,11 @@
-﻿using BattlesSDK.Api;
-using BattlesSDK.Interfaces;
+﻿using ModSDK.Interfaces;
 using Reloaded.Hooks.ReloadedII.Interfaces;
 using Reloaded.Mod.Interfaces;
 using Reloaded.Mod.Interfaces.Internal;
 using System;
 using System.Diagnostics;
 
-namespace BattlesSDK
+namespace ModSDK
 {
     internal class Program : IMod, IExports
     {
@@ -35,7 +34,7 @@ namespace BattlesSDK
         /// <summary>
         /// Instance of the BattlesModController
         /// </summary>
-        BattlesModController _battlesModController;
+        ModController _battlesModController;
 
         /// <summary>
         /// Instance of the API's BattlesMod
@@ -69,55 +68,47 @@ namespace BattlesSDK
         private void InitAPI()
         {
             // Set API Logger
-            BattlesLogger.SetAPILogger(new BattlesLogger(_logger, _apiConfig));
-
-            // Setup IMGUI
-            InitImgui();
+            ModLogger.SetAPILogger(new ModLogger(_logger, _apiConfig));
 
             // Battles Process
             _battlesProcess = GetBattlesProcess();
 
             // Init ModController
-            _battlesModController = new BattlesModController(_modLoader, _logger)
+            _battlesModController = new ModController(_modLoader, _logger)
             {
-                BattlesProcess = _battlesProcess
+                GameProcess = _battlesProcess
             };
             
             RegisterAPI();
-            _modLoader.AddOrReplaceController<IBattlesController>(this, _battlesModController);
+            _modLoader.AddOrReplaceController<IModController>(this, _battlesModController);
 
             // Mod Updater
             //   TODO
 
-            
+
             // Update Loop
-            BattlesLogger.APIWriteLine("Starting Update Loop...");
-            UpdateLoop update = new UpdateLoop(_battlesModController.BattlesMods);
+            ModLogger.APIWriteLine("Starting Update Loop...");
+            UpdateLoop update = new UpdateLoop(_battlesModController.LoadedMods);
             update.StartUpdateLoopAsync();
-            BattlesLogger.APIWriteLine("Update Loop started!");
+            ModLogger.APIWriteLine("Update Loop started!");
 
             // OnGameExit
             RegisterOnGameExit();
-        }
-
-        private void InitImgui()
-        {
-            
         }
 
        
         private void RegisterAPI()
         {
             _apiMod = new Battles_ApiMod();
-            _battlesModController.RegisterBattlesMod(_apiMod, _apiConfig);
-            _apiMod.Logger = BattlesLogger.apiLogger;
+            _battlesModController.RegisterMod(_apiMod, _apiConfig);
+            _apiMod.Logger = ModLogger.apiLogger;
         }
 
         private void RegisterOnGameExit()
         {
             if (_battlesProcess == null)
             {
-                BattlesLogger.APIWriteLine($"Unable to register OnGameExit for mods because {nameof(_battlesProcess)} is null", LogType.Error);
+                ModLogger.APIWriteLine($"Unable to register OnGameExit for mods because {nameof(_battlesProcess)} is null", LogType.Error);
                 return;
             }
 
@@ -129,16 +120,18 @@ namespace BattlesSDK
             Process gameProc = Process.GetCurrentProcess();
             if (gameProc == null)
             {
-                BattlesLogger.APIWriteLine("Failed to get the process for Battles 2. Some of the API features won't work.", LogType.Error);
+                ModLogger.APIWriteLine("Failed to get the process for Battles 2. Some of the API features won't work.", LogType.Error);
                 return null;
             }
+
+            
 
             return gameProc;
         }
 
         private void BattlesProcess_Exited(object sender, EventArgs e)
         {
-            _battlesModController.RunBattlesEvent(mod => mod.OnGameExit());
+            _battlesModController.RunModEvent(mod => mod.OnGameExit());
         }
 
         #region Reloaded2 Methods
@@ -149,7 +142,7 @@ namespace BattlesSDK
         public bool CanUnload() => false;
         public bool CanSuspend() => false;
         public Action Disposing { get; }
-        public Type[] GetTypes() => new Type[] { typeof(IBattlesController) };
+        public Type[] GetTypes() => new Type[] { typeof(IModController) };
         public static void Main() { }
 
         #endregion

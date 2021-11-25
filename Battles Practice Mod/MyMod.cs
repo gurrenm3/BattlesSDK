@@ -1,8 +1,8 @@
-﻿using BattlesSDK.Api;
+﻿using ModSDK.Api;
 
-namespace Battles_Practice_Mod
+namespace TestMod
 {
-    public class MyMod : BattlesMod
+    public class MyMod : ModBase
     {
         public override void Start()
         {

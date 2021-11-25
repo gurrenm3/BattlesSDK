@@ -5,7 +5,7 @@ using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Battles_Practice_Mod.Configuration.Implementation
+namespace TestMod.Configuration.Implementation
 {
     public class Configurable<TParentType> : IUpdatableConfigurable where TParentType : Configurable<TParentType>, new()
     {

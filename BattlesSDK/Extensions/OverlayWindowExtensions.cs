@@ -1,7 +1,7 @@
 ﻿using GameOverlay.Drawing;
 using GameOverlay.Windows;
 
-namespace BattlesSDK.Api
+namespace ModSDK.Api
 {
     /// <summary>
     /// Extension Methods for <see cref="OverlayWindow"/>

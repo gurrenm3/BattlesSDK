@@ -1,8 +1,8 @@
-﻿using BattlesSDK.Api.Gui;
+﻿using ModSDK.Api.Gui;
 using GameOverlay.Drawing;
 using GameOverlay.Windows;
 
-namespace BattlesSDK.Api
+namespace ModSDK.Api
 {
     /// <summary>
     /// A custom InGame popup
