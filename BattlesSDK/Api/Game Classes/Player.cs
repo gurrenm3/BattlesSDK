@@ -3,18 +3,32 @@
 namespace BattlesSDK.Api
 {
     /// <summary>
-    /// TODO
+    /// Base class for all Players
     /// </summary>
-    public class Player
+    public abstract class Player
     {
         /// <summary>
-        /// 
+        /// Called whenever the player's health is changed
         /// </summary>
-        public BattlesEvent<int, int> HealthChanged { get; private set; } = new BattlesEvent<int, int>();
+        public BattlesEvent<int> HealthChanged { get; private set; } = new BattlesEvent<int>();
 
         /// <summary>
-        /// 
+        /// The towers that the player is using
         /// </summary>
         public List<TowerModel> SelectedTowers { get; private set; } = new List<TowerModel>();
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public Player()
+        {
+
+        }
+
+        /// <summary>
+        /// Get the player's current health
+        /// </summary>
+        /// <returns></returns>
+        public abstract int GetHealth();
     }
 }

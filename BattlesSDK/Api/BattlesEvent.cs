@@ -6,19 +6,19 @@ namespace BattlesSDK.Api
     #region Battles Event (No Parameters)
 
     /// <summary>
-    /// A custom event type that allows for multiple "listeners" and can easily invoke all of them
+    /// A custom event type that allows for multiple "listeners" that can easily be invoked all at once.
     /// </summary>
     public class BattlesEvent
     {
         /// <summary>
-        /// All of the current listeners
+        /// All of the current listeners on this event. Each will be activated whenever <see cref="Invoke"/> is called.
         /// </summary>
         public List<Action> Listeners { get; private set; }
 
         /// <summary>
-        /// Add a new listener
+        /// Add a new listener to this event. It will be activated whenever <see cref="Invoke"/> is called.
         /// </summary>
-        /// <param name="action"></param>
+        /// <param name="action">Action to add as a listener.</param>
         public void AddListener(Action action)
         {
             if (Listeners == null)
@@ -28,17 +28,17 @@ namespace BattlesSDK.Api
         }
 
         /// <summary>
-        /// Remove a listener
+        /// Remove a listener from <see cref="Listeners"/>
         /// </summary>
-        /// <param name="action"></param>
-        /// <returns></returns>
+        /// <param name="action">Action to remove</param>
+        /// <returns>If removal is successful this will return true, otherwise false.</returns>
         public bool RemoveListener(Action action)
         {
             return (Listeners != null) ?  Listeners.Remove(action) : false;
         }
 
         /// <summary>
-        /// Invoke this event
+        /// Invoke this event, causing all Listeners to execute.
         /// </summary>
         public void Invoke()
         {
@@ -53,19 +53,19 @@ namespace BattlesSDK.Api
     #region Battles Event (One Parameter)
 
     /// <summary>
-    /// A custom event type that allows for multiple "listeners" and can easily invoke all of them
+    /// A custom event type that allows for multiple "listeners" that can easily be invoked all at once.
     /// </summary>
     public class BattlesEvent<T>
     {
         /// <summary>
-        /// All of the current listeners
+        /// All of the current listeners on this event. Each will be activated whenever <see cref="Invoke"/> is called.
         /// </summary>
         public List<Action<T>> Listeners { get; set; }
 
         /// <summary>
-        /// Add a new listener
+        /// Add a new listener to this event. It will be activated whenever <see cref="Invoke"/> is called.
         /// </summary>
-        /// <param name="action"></param>
+        /// <param name="action">Action to add as a listener.</param>
         public void AddListener(Action<T> action)
         {
             if (Listeners == null)
@@ -75,17 +75,17 @@ namespace BattlesSDK.Api
         }
 
         /// <summary>
-        /// Remove a listener
+        /// Remove a listener from <see cref="Listeners"/>
         /// </summary>
-        /// <param name="action"></param>
-        /// <returns></returns>
+        /// <param name="action">Action to remove</param>
+        /// <returns>If removal is successful this will return true, otherwise false.</returns>
         public bool RemoveListener(Action<T> action)
         {
             return (Listeners != null) ? Listeners.Remove(action) : false;
         }
 
         /// <summary>
-        /// Invoke this event
+        /// Invoke this event, causing all Listeners to execute.
         /// </summary>
         public void Invoke(T value)
         {
@@ -100,19 +100,19 @@ namespace BattlesSDK.Api
     #region Battles Event (Two Parameters)
 
     /// <summary>
-    /// A custom event type that allows for multiple "listeners" and can easily invoke all of them
+    /// A custom event type that allows for multiple "listeners" that can easily be invoked all at once.
     /// </summary>
     public class BattlesEvent<T1, T2>
     {
         /// <summary>
-        /// All of the current listeners
+        /// All of the current listeners on this event. Each will be activated whenever <see cref="Invoke"/> is called.
         /// </summary>
         public List<Action<T1, T2>> Listeners { get; set; }
 
         /// <summary>
-        /// Add a new listener
+        /// Add a new listener to this event. It will be activated whenever <see cref="Invoke"/> is called.
         /// </summary>
-        /// <param name="action"></param>
+        /// <param name="action">Action to add as a listener.</param>
         public void AddListener(Action<T1, T2> action)
         {
             if (Listeners == null)
@@ -122,17 +122,17 @@ namespace BattlesSDK.Api
         }
 
         /// <summary>
-        /// Remove a listener
+        /// Remove a listener from <see cref="Listeners"/>
         /// </summary>
-        /// <param name="action"></param>
-        /// <returns></returns>
+        /// <param name="action">Action to remove</param>
+        /// <returns>If removal is successful this will return true, otherwise false.</returns>
         public bool RemoveListener(Action<T1, T2> action)
         {
             return (Listeners != null) ? Listeners.Remove(action) : false;
         }
 
         /// <summary>
-        /// Invoke this event
+        /// Invoke this event, causing all Listeners to execute.
         /// </summary>
         public void Invoke(T1 value1, T2 value2)
         {
@@ -147,19 +147,19 @@ namespace BattlesSDK.Api
     #region Battles Event (Three Parameters)
 
     /// <summary>
-    /// A custom event type that allows for multiple "listeners" and can easily invoke all of them
+    /// A custom event type that allows for multiple "listeners" that can easily be invoked all at once.
     /// </summary>
     public class BattlesEvent<T1, T2, T3>
     {
         /// <summary>
-        /// All of the current listeners
+        /// All of the current listeners on this event. Each will be activated whenever <see cref="Invoke"/> is called.
         /// </summary>
         public List<Action<T1, T2, T3>> Listeners { get; set; }
 
         /// <summary>
-        /// Add a new listener
+        /// Add a new listener to this event. It will be activated whenever <see cref="Invoke"/> is called.
         /// </summary>
-        /// <param name="action"></param>
+        /// <param name="action">Action to add as a listener.</param>
         public void AddListener(Action<T1, T2, T3> action)
         {
             if (Listeners == null)
@@ -169,17 +169,17 @@ namespace BattlesSDK.Api
         }
 
         /// <summary>
-        /// Remove a listener
+        /// Remove a listener from <see cref="Listeners"/>
         /// </summary>
-        /// <param name="action"></param>
-        /// <returns></returns>
+        /// <param name="action">Action to remove</param>
+        /// <returns>If removal is successful this will return true, otherwise false.</returns>
         public bool RemoveListener(Action<T1, T2, T3> action)
         {
             return (Listeners != null) ? Listeners.Remove(action) : false;
         }
 
         /// <summary>
-        /// Invoke this event
+        /// Invoke this event, causing all Listeners to execute.
         /// </summary>
         public void Invoke(T1 value1, T2 value2, T3 value3)
         {
@@ -194,19 +194,19 @@ namespace BattlesSDK.Api
     #region Battles Event (Four Parameters)
 
     /// <summary>
-    /// A custom event type that allows for multiple "listeners" and can easily invoke all of them
+    /// A custom event type that allows for multiple "listeners" that can easily be invoked all at once.
     /// </summary>
     public class BattlesEvent<T1, T2, T3, T4>
     {
         /// <summary>
-        /// All of the current listeners
+        /// All of the current listeners on this event. Each will be activated whenever <see cref="Invoke"/> is called.
         /// </summary>
         public List<Action<T1, T2, T3, T4>> Listeners { get; set; }
 
         /// <summary>
-        /// Add a new listener
+        /// Add a new listener to this event. It will be activated whenever <see cref="Invoke"/> is called.
         /// </summary>
-        /// <param name="action"></param>
+        /// <param name="action">Action to add as a listener.</param>
         public void AddListener(Action<T1, T2, T3, T4> action)
         {
             if (Listeners == null)
@@ -216,17 +216,17 @@ namespace BattlesSDK.Api
         }
 
         /// <summary>
-        /// Remove a listener
+        /// Remove a listener from <see cref="Listeners"/>
         /// </summary>
-        /// <param name="action"></param>
-        /// <returns></returns>
+        /// <param name="action">Action to remove</param>
+        /// <returns>If removal is successful this will return true, otherwise false.</returns>
         public bool RemoveListener(Action<T1, T2, T3, T4> action)
         {
             return (Listeners != null) ? Listeners.Remove(action) : false;
         }
 
         /// <summary>
-        /// Invoke this event
+        /// Invoke this event, causing all Listeners to execute.
         /// </summary>
         public void Invoke(T1 value1, T2 value2, T3 value3, T4 value4)
         {

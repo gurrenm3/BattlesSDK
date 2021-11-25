@@ -57,8 +57,8 @@ namespace BattlesSDK.Api
             Right = right;
             Bottom = bottom;
 
-            Width = Right - Left;
-            Height = Bottom - Top;
+            Width = right - left;
+            Height = bottom - top;
         }
 
         /// <summary>
@@ -92,8 +92,8 @@ namespace BattlesSDK.Api
             Right = rectangle.Right;
             Bottom = rectangle.Bottom;
 
-            Width = Right - Left;
-            Height = Bottom - Top;
+            Width = rectangle.Right - rectangle.Left;
+            Height = rectangle.Bottom - rectangle.Top;
         }
 
         /// <summary>
@@ -107,8 +107,8 @@ namespace BattlesSDK.Api
             Right = (int)MathF.Round(rectangle.Right);
             Bottom = (int)MathF.Round(rectangle.Bottom);
 
-            Width = Right - Left;
-            Height = Bottom - Top;
+            Width = (int)MathF.Round(rectangle.Right) - (int)MathF.Round(rectangle.Left);
+            Height = (int)MathF.Round(rectangle.Bottom) - (int)MathF.Round(rectangle.Top);
         }
 
         /// <summary>

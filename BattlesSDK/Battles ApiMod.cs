@@ -1,4 +1,9 @@
 ﻿using BattlesSDK.Api;
+using LiteNetLib;
+using Reloaded.Messaging;
+using Reloaded.Messaging.Messages;
+using Reloaded.Messaging.Structs;
+using System.Net;
 
 namespace BattlesSDK
 {
@@ -20,10 +25,14 @@ namespace BattlesSDK
             inputManager.Update();
         }
 
-        Popup testPopup = null;
-
+        Popup testPopup;
         private void OnKeyDown(KeyCode key)
         {
+            if (key == KeyCode.Right)
+            {
+                
+            }
+
             if (key == KeyCode.LControl)
             {
                 Logger.WriteLine("gaz");
@@ -33,7 +42,25 @@ namespace BattlesSDK
                     testPopup.Show("");
                 }
                 else
-                    testPopup.ShowPopup = false;
+                {
+                    testPopup.Window.IsVisible = !testPopup.Window.IsVisible; 
+                }
+
+
+                var player = Game.Instance.CurrentMatch.ActualPlayer;
+                player.HealthChanged.
+
+
+
+
+
+
+
+
+
+
+
+
             }
         }
 
