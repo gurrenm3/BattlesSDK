@@ -7,7 +7,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>ModSDK</RootNamespace>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <AssemblyName>BattlesSDK</AssemblyName>
   </PropertyGroup>
 
@@ -34,6 +34,7 @@
     <PackageReference Include="GameOverlay.Net" Version="4.3.1" />
     <PackageReference Include="Reloaded.Memory" Version="4.1.3" />
     <PackageReference Include="Reloaded.Memory.Buffers" Version="1.4.1" />
+    <PackageReference Include="Reloaded.Memory.Sigscan" Version="1.2.1" />
     <PackageReference Include="Reloaded.Mod.Interfaces" Version="1.10.1" />
     <PackageReference Include="Reloaded.SharedLib.Hooks" Version="1.9.0" />
     <PackageReference Include="SharpDX" Version="4.2.0" />

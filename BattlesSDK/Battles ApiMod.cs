@@ -1,5 +1,8 @@
 ﻿using ModSDK.Api;
+using SharpDX.Text;
+using System;
 using System.Diagnostics;
+using System.IO;
 
 namespace ModSDK
 {
@@ -21,18 +24,6 @@ namespace ModSDK
         public override void Update()
         {
             inputManager.Update();
-
-            if (stopwatch == null)
-                stopwatch = Stopwatch.StartNew();
-
-            if (stopwatch.ElapsedMilliseconds <= 1000)
-            {
-                deltaTimePassed += Time.DeltaTime;
-            }
-            else
-            {
-                Logger.WriteLine(deltaTimePassed);
-            }
         }
 
         Popup testPopup;
@@ -40,7 +31,13 @@ namespace ModSDK
         {
             if (key == KeyCode.Right)
             {
-                Logger.WriteLine(Time.DeltaTime);
+                //Logger.WriteLine("Test1111");
+                
+
+                //File.WriteAllText(Environment.CurrentDirectory + "\\jet messages 2.txt", HookTest.stringBuilder.ToString());
+                //var bytes = Encoding.UTF8.GetBytes(HookTest.stringBuilder.ToString());
+                //File.WriteAllBytes(Environment.CurrentDirectory + "\\jet messages 2.txt", bytes);
+                //Logger.WriteLine(Time.DeltaTime);
             }
 
             if (key == KeyCode.LControl)

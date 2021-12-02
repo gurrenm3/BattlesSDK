@@ -13,7 +13,7 @@ namespace TestMod
         /// <summary>
         /// Your mod if from ModConfig.json, used during initialization.
         /// </summary>
-        private const string MyModId = "Battles_Practice_Mod";
+        private const string MyModId = "Battles_TestMod";
 
         /// <summary>
         /// Used for writing text to the console window.

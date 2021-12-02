@@ -8,13 +8,13 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <ApplicationIcon />
     <StartupObject />
-    <AssemblyName>TestMod</AssemblyName>
+    <AssemblyName>Battles_TestMod</AssemblyName>
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
     <RootNamespace>TestMod</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>F:\Users\Mrclone2\Documents\Reloaded II Mod Manager\Mods\Battles Practice Mod</OutputPath>
+    <OutputPath>F:\Users\Mrclone2\Documents\Reloaded II Mod Manager\Mods\Battles Test Mod</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

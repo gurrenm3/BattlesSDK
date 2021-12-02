@@ -94,6 +94,9 @@ namespace ModSDK
 
             // OnGameExit
             RegisterOnGameExit();
+
+            HookLoader.Init(_hooks); // loads the hooks we wanat
+            HookTests.Init(_hooks);  // loads any hooks we're testing
         }
 
        

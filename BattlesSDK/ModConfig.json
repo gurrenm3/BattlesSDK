@@ -12,5 +12,5 @@
   "ModNativeDll64": "",
   "ModDependencies": [ "reloaded.sharedlib.hooks" ],
   "OptionalDependencies": null,
-  "SupportedAppId": []
+  "SupportedAppId": [ "battles-win.exe", "btdb2_game.exe" ]
 }
