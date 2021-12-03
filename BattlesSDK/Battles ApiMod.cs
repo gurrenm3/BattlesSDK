@@ -1,8 +1,5 @@
 ﻿using ModSDK.Api;
-using SharpDX.Text;
-using System;
-using System.Diagnostics;
-using System.IO;
+using ModSDK.Api.Hooks;
 
 namespace ModSDK
 {
@@ -10,17 +7,18 @@ namespace ModSDK
     {
         Input inputManager = new Input();
 
-        public override void Start()
+        public override void Awake()
         {
-            Logger.WriteLine("API is Initializing...");
-
-            Input.OnKeyDown.AddListener(OnKeyDown);
-
-            Logger.WriteLine("API finished Initializing!");
+            base.Awake();
         }
 
-        double deltaTimePassed = 0;
-        Stopwatch stopwatch;
+        public override void Start()
+        {
+            base.Start();
+            
+            Input.OnKeyDown.AddListener(OnKeyDown);
+        }
+
         public override void Update()
         {
             inputManager.Update();
@@ -29,15 +27,17 @@ namespace ModSDK
         Popup testPopup;
         private void OnKeyDown(KeyCode key)
         {
+            if (key == KeyCode.Up)
+            {
+                NKLogger.LogToFile("Hello! I'm the message that's getting logged!", "I'm the sender of the message!");
+            }
+
             if (key == KeyCode.Right)
             {
-                //Logger.WriteLine("Test1111");
-                
-
-                //File.WriteAllText(Environment.CurrentDirectory + "\\jet messages 2.txt", HookTest.stringBuilder.ToString());
-                //var bytes = Encoding.UTF8.GetBytes(HookTest.stringBuilder.ToString());
-                //File.WriteAllBytes(Environment.CurrentDirectory + "\\jet messages 2.txt", bytes);
-                //Logger.WriteLine(Time.DeltaTime);
+                foreach (var msg in NKMessageLoggedToFile.NKLogMessages)
+                {
+                    Logger.WriteLine("Log: " + msg);
+                }
             }
 
             if (key == KeyCode.LControl)

@@ -5,6 +5,7 @@ using Reloaded.Memory.Sources;
 using System;
 using System.IO;
 using System.Linq.Expressions;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace ModSDK
@@ -29,7 +30,7 @@ namespace ModSDK
             PosAntiCheatFunc = hooks.CreateFunction<PosAntiCheat1Del>(possibleAntiCheat1.Scan());
             PosAntiCheatHook = PosAntiCheatFunc.Hook(OnPosAntiCheat).Activate();*/
 
-            
+
 
             /*Pattern possibleAntiCheat2 = new Pattern("40 55 53 56 48 8B EC 48 83 EC 50 48 8B D9 49 8B C9 E8 ? ? ? ?");
             PosAntiCheat2Func = hooks.CreateFunction<PosAntiCheat2Del>(possibleAntiCheat2.Scan());
@@ -42,11 +43,11 @@ namespace ModSDK
 
             /*Signature possibleThrowJetError = new Signature("48 8B C4 55 53 56 57 41 56 41 57 48 8D 68 C8 48 81 EC ? ? ? ? 0F 29 70 B8 0F 29 78 A8 48 8B 05 ? ? ? ? 48 33 C4 48 89 45 D0 4D 8B F1 49 8B F0 48 8B DA 48 8B F9 48 89 54 24 ? C7 44 24");
             PossibleThrowJetErrorFunc = hooks.CreateFunction<PossibleThrowJetErrorDel>(possibleThrowJetError.Scan());
-            PossibleThrowJetErrorHook = PossibleThrowJetErrorFunc.Hook(PossibleThrowJetErrorLoad).Activate(); */
+            PossibleThrowJetErrorHook = PossibleThrowJetErrorFunc.Hook(PossibleThrowJetErrorLoad).Activate();*/
 
-            /*Signature possibleLoadFile2 = new Signature("40 55 53 56 57 41 54 41 55 41 56 41 57 48 8D 6C 24 ? 48 81 EC ? ? ? ? 48 8B 05 ? ? ? ? 48 33 C4 48 89 45 0F 4D 8B F9 49 8B D8 48 8B");
+            Signature possibleLoadFile2 = new Signature("40 55 53 56 57 41 54 41 55 41 56 41 57 48 8D 6C 24 ? 48 81 EC ? ? ? ? 48 8B 05 ? ? ? ? 48 33 C4 48 89 45 0F 4D 8B F9 49 8B D8 48 8B");
             PossibleLoadFile2Func = hooks.CreateFunction<PossibleLoadFile2Del>(possibleLoadFile2.Scan());
-            PossibleLoadFile2Hook = PossibleLoadFile2Func.Hook(PossibleLoadFile2Load).Activate();*/
+            PossibleLoadFile2Hook = PossibleLoadFile2Func.Hook(PossibleLoadFile2Load).Activate();
         }
 
 
@@ -54,19 +55,21 @@ namespace ModSDK
         #region Possible Throw Jet Error
 
 
-        /*[Function(CallingConventions.Microsoft)]
-        delegate long PossibleThrowJetErrorDel(long a1, long a2, void* a3, byte a4, int a5);
+        [Function(CallingConventions.Microsoft)]
+        delegate long PossibleThrowJetErrorDel(long a1, long a2, string a3, int a4, int a5);
         static IHook<PossibleThrowJetErrorDel> PossibleThrowJetErrorHook;
         static IFunction<PossibleThrowJetErrorDel> PossibleThrowJetErrorFunc { get; set; }
-        static long PossibleThrowJetErrorLoad(long a1, long a2, void* a3, byte a4, int a5)
+        static long PossibleThrowJetErrorLoad(long a1, long a2, string a3, int a4, int a5)
         {
             //ModLogger.APIWriteLine("PossibleThrowJetErrorLoad called");
-            ModLogger.APIWriteLine(lastPopupTitle);
+            
             var result = PossibleThrowJetErrorHook.OriginalFunction(a1, a2, a3, a4, a5);
-            ModLogger.APIWriteLine(a4.ToString());
-            ModLogger.APIWriteLine("============================");
+
+            //var test = *(char*)a3;
+            /*ModLogger.APIWriteLine(a3);
+            ModLogger.APIWriteLine("============================");*/
             return result;
-        }*/
+        }
 
         #endregion
 
@@ -75,16 +78,15 @@ namespace ModSDK
 
 
         [Function(CallingConventions.Microsoft)]
-        delegate long PossibleLoadFile2Del(long a1, long a2, void* a3, byte a4);
+        delegate long PossibleLoadFile2Del(long a1, long a2, void* a3, int a4);
         static IHook<PossibleLoadFile2Del> PossibleLoadFile2Hook;
         static IFunction<PossibleLoadFile2Del> PossibleLoadFile2Func { get; set; }
-        static long PossibleLoadFile2Load(long a1, long a2, void* a3, byte a4)
+        static long PossibleLoadFile2Load(long a1, long a2, void* a3, int a4)
         {
-            //ModLogger.APIWriteLine("PossibleThrowJetErrorLoad called");
             var result = PossibleLoadFile2Hook.OriginalFunction(a1, a2, a3, a4);
             //ModLogger.APIWriteLine(lastPopupTitle);
             //ModLogger.APIWriteLine(a4.ToString());
-            ModLogger.APIWriteLine("============================");
+            //ModLogger.APIWriteLine("============================");
             return result;
         }
 

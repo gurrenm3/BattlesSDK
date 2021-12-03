@@ -11,6 +11,7 @@
     <AssemblyName>Battles_TestMod</AssemblyName>
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
     <RootNamespace>TestMod</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

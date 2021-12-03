@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ModSDK.Api.Hooks;
+using System;
 
 namespace ModSDK.Api
 {
