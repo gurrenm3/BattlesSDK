@@ -18,7 +18,7 @@ namespace TestMod
             if (key == KeyCode.Left)
             {
                 Logger.WriteLine("AAAAA");
-                Logger.WriteLine(ModSDK.Api.Hooks.StdStringHook.LastString);
+                Logger.WriteLine(ModSDK.Api.Hooks.StdStringAssign.LastString);
             }
         }
 

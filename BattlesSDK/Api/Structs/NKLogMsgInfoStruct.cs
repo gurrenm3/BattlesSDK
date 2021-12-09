@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ModSDK.Api
 {
@@ -27,7 +25,7 @@ namespace ModSDK.Api
 
 
         [FieldOffset(0x18)]
-        public long value3;
+        public DateTime* value3;
 
         /// <summary>
         /// An address that points to the string name of the sender. Use <see cref="StringUtil.TryToString(long)"/> to convert it.

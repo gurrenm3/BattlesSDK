@@ -14,8 +14,9 @@ namespace ModSDK
             if (initialized)
                 return;
 
-            StdStringHook.Init(hooks);
-            NKMessageLoggedToFile.Init(hooks);
+            StdStringAssign.Init(hooks);
+            NKLogger_LogToFile.Init(hooks);
+            Game_Initialize.Init(hooks);
 
             initialized = true;
         }

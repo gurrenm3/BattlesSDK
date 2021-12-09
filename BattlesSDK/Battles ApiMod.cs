@@ -1,5 +1,8 @@
 ﻿using ModSDK.Api;
 using ModSDK.Api.Hooks;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace ModSDK
 {
@@ -15,7 +18,32 @@ namespace ModSDK
         public override void Start()
         {
             base.Start();
-            
+
+            Game.OnGameStarted.AddListener((game) =>
+            {
+                Logger.WriteLine("Game was just initialized!");
+
+                string path = @"F:\Users\Mrclone2\Documents\Battles 2 Modding\tower_dart_lrg_med_sml_ef3be3b4b9a699a6a61244e4858e5119\Game version 1.0.2\manifest.txt";
+                string text = File.ReadAllText(path);
+
+                /*Logger.WriteLine(BinEncryption.header.Length);
+                var key = BinEncryption.GetKey(1234);
+                List<byte> keyBytes = new List<byte>();
+                key.ForEach(k => keyBytes.AddRange(BitConverter.GetBytes(k)));
+
+                string output = "";
+                for (int i = 0; i < keyBytes.Count; i++)
+                {
+                    output += keyBytes[i].ToString("x2");
+                }
+
+                Logger.WriteLine(output);*/
+
+
+                /*var decrypt = BinEncryption.DecryptText(text);
+                Logger.WriteLine(decrypt);*/
+            });
+
             Input.OnKeyDown.AddListener(OnKeyDown);
         }
 
@@ -34,15 +62,18 @@ namespace ModSDK
 
             if (key == KeyCode.Right)
             {
-                foreach (var msg in NKMessageLoggedToFile.NKLogMessages)
+                foreach (var msg in NKLogger.LoggedMessages)
                 {
                     Logger.WriteLine("Log: " + msg);
                 }
             }
 
-            if (key == KeyCode.LControl)
+            if (key == KeyCode.Left)
             {
+
                 
+                
+                //Logger.WriteLine(NKLogger.LogFilePath);
             }
         }
 
